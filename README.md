@@ -6,7 +6,7 @@ Submitted by: **Valentine**
 
 Time spent: **9** hours spent in total
 
-URL: **vrestaurant.herokuapp.com**
+URL: **https://vrestaurant.herokuapp.com/**
 
 ## User Stories
 
