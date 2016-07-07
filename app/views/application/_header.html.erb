@@ -10,4 +10,18 @@
       <%= link_to 'Contact Us', contact_us_path, class: "nav-link" %>
     </li>
   </ul>
+
+  <% if current_page?(menu_path) || current_page?(food_items_path) %>
+    <div class="nav navbar-nav" align="right">
+      <form class="form-inline">
+        <div class="form-group">            
+          <%= form_tag root_path, :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], class: 'form-control form-control-sm' %>
+            <%= submit_tag "Search", class: 'btn btn-info-outline btn-sm' %>
+          <% end %>
+        </div>
+      </form>
+    </div>
+  <% end -%>
+
 </nav>

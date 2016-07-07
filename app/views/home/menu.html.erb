@@ -1,0 +1,42 @@
+<h1>Menu</h1>
+
+<h5>Sort by</h5>
+<div class="btn-group" role="group">
+  <% SortBy.all.each do |sort_by| %>
+    <button type="button" class="btn btn-secondary">
+      <%= link_to sort_by,
+        :sort_by => sort_by_value(sort_by) %>  
+    </button>
+  <% end -%>
+</div>
+
+<div class="nav nav-pills">
+  <% Section.all.each do |section| %>
+    <li class="nav-item">
+      <%= link_to section, menu_path(section: section), class: "nav-link #{params[:section] == section && 'active'}" %>  
+    </li>
+  <% end -%>
+</div>
+
+<% @food_items.in_groups_of(3) do |group| %>
+  <div class="row">
+    <% group.compact.each do |food_item| %>
+    <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            <%= food_item.name %>
+            <h5><span class="label label-default"><%= food_item.orders.size %> Orders</span></h5>
+            </div>
+          <div class="card-text"><%= food_item.description %></div>
+          <div class="card-block"><%= image_tag food_item.image %></div>
+          <div class="card-footer">
+            <div class="row">
+              <div>Price: <%= number_to_currency(food_item.price, :locale => :vi, precision: 0) %></div>
+              <a href= <%= "/food_items/#{food_item.id}/orders/new" %> class="btn btn-primary">Order</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+<% end -%>
